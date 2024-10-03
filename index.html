@@ -5,7 +5,30 @@
    <meta charset="utf-8" />
    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
-   <style>
+   <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css" rel="stylesheet"> 
+   <script src="https://js.arcgis.com/4.30/"></script>
+
+   <script> require([ 
+      "esri/Config",
+      "esri/Map", 
+      "esri/views/MapView"
+
+    ], function(esriConfig, Map, MapView)  {
+     
+      esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurLnZ1SKuVjcmhuYy7ZgFo7nRkeaex5Pyse90hA3_-twQ9aZh3ukW7y7j9oxVbinOUkZTkuP5jIlAEtH5e_7DHP0liWf6tn6QTxetcFnI3rIi0xPzkoaEPekxL0-rDUwsAdMQRuux-0uuNMTE7e_lNeG45pvgeuCSr5abahKFzvuUJ-ewQsq9pGAJYlLcwozKzYElZv8h7OlHzgxN1NcRAiWme1AEaa5tzqVZug9kV8C5AT1_64sbOrZQ"; 
+      const map = new Map({
+        basemap: "satellite"
+      });
+
+      const view = new MapView({
+        container: "viewDiv", // Reference to the DOM node that will contain the view
+        map: map, // References the map object
+        center: [-157.7405, 21.4024], 
+        zoom: 13 });
+    });
+  
+  </script>
+  <style>
     html,
     body,
     #viewDiv {
@@ -16,30 +39,10 @@
     }
    </style>
 
-   <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css" rel="stylesheet"> 
-   <script src="https://js.arcgis.com/4.30/"></script>
-
-   <script>
-     require([ "esri/Config","esri/Map", "esri/views/MapView" ], (esriConfig, Map, MapView) => {
-     
-      esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurLnZ1SKuVjcmhuYy7ZgFo7nRkeaex5Pyse90hA3_-twQ9aZh3ukW7y7j9oxVbinOUkZTkuP5jIlAEtH5e_7DHP0liWf6tn6QTxetcFnI3rIi0xPzkoaEPekxL0-rDUwsAdMQRuux-0uuNMTE7e_lNeG45pvgeuCSr5abahKFzvuUJ-ewQsq9pGAJYlLcwozKzYElZv8h7OlHzgxN1NcRAiWme1AEaa5tzqVZug9kV8C5AT1_64sbOrZQ"; 
-
-      const map = new Map({
-      basemap: "satellite"
-    });
-
-     const view = new MapView({
-        container: "viewDiv", // Reference to the DOM node that will contain the view
-        map: map // References the map object
-    });
-  });
-  </script>
-  
-
   </head>
   <body>
-  hello world text to check if everything worked -->
-   <h1>Hello World! I am ready to collect data.</h1>
+  <!-- hello world text to check if everything worked -->
+   <!-- <h1>Hello World! I am ready to collect data.</h1> -->
    <div id="viewDiv"></div>
   </body>
 </html>
