@@ -5,15 +5,28 @@
    <meta charset="utf-8" />
    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
+   <style>
+    html,
+    body,
+    #viewDiv {
+     padding: 0;
+     margin: 0;
+     height: 100%;
+     width: 100%;
+    }
+   </style>
+
    <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css" rel="stylesheet"> 
    <script src="https://js.arcgis.com/4.30/"></script>
 
-   <script> require([ 
+   <script> 
+    require([ 
       "esri/Config",
       "esri/Map", 
-      "esri/views/MapView"
+      "esri/views/MapView",
+      "esri/widgets/Locate"
 
-    ], function(esriConfig, Map, MapView)  {
+    ], function(esriConfig, Map, MapView, Locate)  {
      
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurLnZ1SKuVjcmhuYy7ZgFo7nRkeaex5Pyse90hA3_-twQ9aZh3ukW7y7j9oxVbinOUkZTkuP5jIlAEtH5e_7DHP0liWf6tn6QTxetcFnI3rIi0xPzkoaEPekxL0-rDUwsAdMQRuux-0uuNMTE7e_lNeG45pvgeuCSr5abahKFzvuUJ-ewQsq9pGAJYlLcwozKzYElZv8h7OlHzgxN1NcRAiWme1AEaa5tzqVZug9kV8C5AT1_64sbOrZQ"; 
       const map = new Map({
@@ -25,19 +38,20 @@
         map: map, // References the map object
         center: [-157.7405, 21.4024], 
         zoom: 13 });
-    });
+
+        // Locate Button 
+        const locateBtn = new Locate({ view: view }); 
+        view.ui.add(locateBtn, "top-left");
+
+         // Search Bar 
+         const search = new Search({ view: view }); 
+        view.ui.add(search, "top-right");
+        
+      }); 
+  
   
   </script>
-  <style>
-    html,
-    body,
-    #viewDiv {
-     padding: 0;
-     margin: 0;
-     height: 100%;
-     width: 100%;
-    }
-   </style>
+  
 
   </head>
   <body>
