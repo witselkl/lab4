@@ -21,12 +21,14 @@
 
    <script> 
     require([ 
-      "esri/Config",
+      "esri/config",
       "esri/Map", 
       "esri/views/MapView",
-      "esri/widgets/Locate"
+      "esri/widgets/Locate",
+      "esri/widgets/Search",
+      "esri/layers/FeatureLayer"
 
-    ], function(esriConfig, Map, MapView, Locate)  {
+    ], function(esriConfig, Map, MapView, Locate, Search, FeatureLayer)  {
      
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurLnZ1SKuVjcmhuYy7ZgFo7nRkeaex5Pyse90hA3_-twQ9aZh3ukW7y7j9oxVbinOUkZTkuP5jIlAEtH5e_7DHP0liWf6tn6QTxetcFnI3rIi0xPzkoaEPekxL0-rDUwsAdMQRuux-0uuNMTE7e_lNeG45pvgeuCSr5abahKFzvuUJ-ewQsq9pGAJYlLcwozKzYElZv8h7OlHzgxN1NcRAiWme1AEaa5tzqVZug9kV8C5AT1_64sbOrZQ"; 
       const map = new Map({
@@ -39,15 +41,23 @@
         center: [-157.7405, 21.4024], 
         zoom: 13 });
 
-        // Locate Button 
-        const locateBtn = new Locate({ view: view }); 
+      // Locate Button 
+      const locateBtn = new Locate({ view: view }); 
         view.ui.add(locateBtn, "top-left");
 
-         // Search Bar 
-         const search = new Search({ view: view }); 
+      // Search Bar 
+      const search = new Search({ view: view }); 
         view.ui.add(search, "top-right");
         
-      }); 
+      // create a feature layer from a feature service
+      const EventLayer = new FeatureLayer({ 
+          url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/survey123_47e899552d24448a9db74735d97df78b_results/FeatureServer", 
+      });
+      
+      //adding event layer to map
+      map.add(EventLayer);
+
+    }); 
   
   
   </script>
